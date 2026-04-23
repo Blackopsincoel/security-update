@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberForce — Güvenlik Doğrulaması</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      max-width: 460px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .header {
+      background: #1a2340;
+      padding: 28px 36px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: #2e75b6;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .logo-text {
+      color: #fff;
+    }
+
+    .logo-text .brand {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-text .sub {
+      font-size: 11px;
+      color: #8fa3c0;
+      font-weight: 400;
+      margin-top: 1px;
+    }
+
+    .alert-banner {
+      background: #fff3cd;
+      border-left: 4px solid #f59e0b;
+      padding: 12px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: #7c5b00;
+    }
+
+    .alert-banner .icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+
+    .body {
+      padding: 32px 36px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a2340;
+      margin-bottom: 8px;
+    }
+
+    .desc {
+      font-size: 13.5px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .security-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 24px;
+      font-size: 12.5px;
+      color: #444;
+    }
+
+    .security-box .title {
+      font-weight: 600;
+      color: #c0392b;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .security-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .security-box ul li::before {
+      content: "•";
+      color: #c0392b;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: #1a2340;
+      outline: none;
+      transition: border 0.2s;
+      margin-bottom: 16px;
+    }
+
+    input:focus { border-color: #2e75b6; }
+
+    .timer {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 7px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: #b91c1c;
+      font-weight: 500;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #countdown { font-weight: 700; font-size: 14px; }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 13px;
+      background: #1a2340;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    button[type="submit"]:hover { background: #2e75b6; }
+
+    .footer-note {
+      margin-top: 18px;
+      font-size: 11.5px;
+      color: #999;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .footer-bar {
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      padding: 14px 36px;
+      font-size: 11px;
+      color: #aaa;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Success screen */
+    .success {
+      display: none;
+      padding: 40px 36px;
+      text-align: center;
+    }
+
+    .success .check { font-size: 48px; margin-bottom: 16px; }
+    .success h2 { font-size: 20px; color: #1a2340; margin-bottom: 8px; }
+    .success p { font-size: 13.5px; color: #666; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="logo-icon">🔐</div>
+    <div class="logo-text">
+      <div class="brand">CyberForce</div>
+      <div class="sub">Bilgi Güvenliği Portalı</div>
+    </div>
+  </div>
+
+  <div class="alert-banner">
+    <span class="icon">⚠️</span>
+    <span>Hesabınızda güvenlik açığı tespit edildi. Lütfen doğrulama yapın.</span>
+  </div>
+
+  <div class="body">
+    <div id="form-section">
+      <h1>Şifre Sıfırlama Zorunlu</h1>
+      <p class="desc">
+        Güvenlik politikamız gereği şifrenizi acilen güncellemeniz gerekmektedir.
+        Bu işlemi tamamlamazsanız hesabınız geçici olarak askıya alınacaktır.
+      </p>
+
+      <div class="security-box">
+        <div class="title">🔴 Tespit Edilen Güvenlik Olayları</div>
+        <ul>
+          <li>3 farklı konumdan başarısız giriş denemesi</li>
+          <li>Şüpheli cihazdan erişim girişimi</li>
+          <li>Mevcut şifreniz veri sızıntısı listesinde tespit edildi</li>
+        </ul>
+      </div>
+
+      <div class="timer">
+        ⏱️ Kalan süre: <span id="countdown">23:59</span> — Bu süre içinde işlem yapılmazsa hesabınız askıya alınır.
+      </div>
+
+      <form id="resetForm" onsubmit="handleSubmit(event)">
+        <label for="email">E-posta Adresiniz</label>
+        <input type="email" id="email" placeholder="ornek@cyberforce.com" required>
+
+        <label for="current">Mevcut Şifreniz</label>
+        <input type="password" id="current" placeholder="Mevcut şifrenizi girin" required>
+
+        <label for="newpass">Yeni Şifreniz</label>
+        <input type="password" id="newpass" placeholder="En az 8 karakter" required>
+
+        <button type="submit">Şifremi Sıfırla &amp; Hesabımı Koru →</button>
+      </form>
+
+      <p class="footer-note">
+        Bu işlemi siz başlatmadıysanız derhal<br>
+        <strong>security@cyberforce-internal.com</strong> adresine bildiriniz.
+      </p>
+    </div>
+
+    <div class="success" id="success-section">
+      <div class="check">✅</div>
+      <h2>Şifreniz Güncellendi</h2>
+      <p>Hesabınız başarıyla güvence altına alındı.<br>Yeni şifrenizle giriş yapabilirsiniz.</p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>© 2026 CyberForce Security</span>
+    <span>Gizlilik Politikası</span>
+  </div>
+</div>
+
+<script>
+  // Countdown timer
+  let totalSeconds = 24 * 60 - 1;
+  function updateTimer() {
+    const m = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+    const s = String(totalSeconds % 60).padStart(2, '0');
+    document.getElementById('countdown').textContent = m + ':' + s;
+    if (totalSeconds > 0) totalSeconds--;
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const current = document.getElementById('current').value;
+    const newpass = document.getElementById('newpass').value;
+
+    // Log captured data (for CTF demonstration)
+    console.log('=== CAPTURED CREDENTIALS ===');
+    console.log('Email:', email);
+    console.log('Current Password:', current);
+    console.log('New Password:', newpass);
+
+    // Show success screen
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('success-section').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
